@@ -57,21 +57,36 @@ public class Cola<T extends Comparable<T>> {
 
     public void enColar(T dato) {
         NodoCola<T> nuevoNodo = new NodoCola<>(dato);
-        if (this.cantelementos == 0) {
-            this.primero = nuevoNodo;
-            this.ultimo = nuevoNodo;
+
+        if (this.cantelementos + 1 < this.maximo) {
+            if (this.cantelementos == 0) {
+                this.primero = nuevoNodo;
+                this.ultimo = nuevoNodo;
+            } else {
+                NodoCola<T> nodoAux = this.getPrimero();
+                nuevoNodo.setSiguiente(nodoAux);
+                this.setPrimero(nuevoNodo);
+            }
+            this.cantelementos++;
+            System.out.println("Elemento agregado");
         } else {
-            NodoCola<T> nodoAux = this.getPrimero();
-            nuevoNodo.setSiguiente(nodoAux);
-            this.setPrimero(nuevoNodo);
+            System.out.println("Maximo alcanzado");
         }
-        this.cantelementos++;
+
     }
 
     public NodoCola<T> desenColar() {
         NodoCola<T> nodoAux = this.getPrimero();
         NodoCola<T> nodoPrev = null;
         NodoCola<T> nodoUltimo = null;
+        if (this.esVacia()) {
+            return null;
+        }
+
+        if (this.cantelementos == 1) {
+
+        }
+
         while (nodoAux != null) {
             if (nodoAux.equals(this.getUltimo())) {
                 nodoPrev = nodoAux;

@@ -9,7 +9,8 @@ package estructuras;
  * @author mauro
  * @param <T>
  */
-public class Pila<T extends Comparable<T>>{
+public class Pila<T extends Comparable<T>> {
+
     int maximo;         // el maximo aceptado en la pila
     int cantelementos; //la cantidad de elementos que tiene la pila 
     NodoPila<T> primero;
@@ -20,58 +21,54 @@ public class Pila<T extends Comparable<T>>{
         this.primero = null;
     }
 
-    public int getMaximo() {
-        return maximo;
+    public void apilar(T dato) { // ESTO ES PUSH
+        NodoPila<T> nuevoNodo = new NodoPila<>(dato);
+        nuevoNodo.setSiguiente(this.primero);
+        this.primero = nuevoNodo;
+        this.cantelementos++;
     }
 
-    public void setMaximo(int maximo) {
-        this.maximo = maximo;
+    public NodoPila<T> desapilar() { // ESTO ES POP
+        NodoPila<T> auxiliar = this.primero;
+        this.primero = auxiliar.getSiguiente();        
+        this.cantelementos--;
+        return auxiliar;
     }
 
-    public int getCantelementos() {
-        return cantelementos;
-    }
-
-    public void setCantelementos(int cantelementos) {
-        this.cantelementos = cantelementos;
-    }
-
-    public NodoPila getPrimero() {
-        return primero;
-    }
-
-    public void setPrimero(NodoPila primero) {
-        this.primero = primero;
-    }
-
-     
-    public void apilar(T dato) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-     
-    public void desapilar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-     
     public boolean esVacia() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.cantelementos == 0;
     }
 
-     
     public boolean esllena() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.cantelementos == this.maximo;
+
     }
 
-     
-    public T cima() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public NodoPila<T> cima() { // TOP
+        return this.primero;
     }
 
-     
     public int elementos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.cantelementos;
+    }
+
+    @Override
+    public String toString() {
+        String texto = "Pila{" + "maximo=" + maximo + ", cantelementos=" + cantelementos + ",";
+        if (esVacia()) {
+            texto += "Pila vacia";
+        } else {
+            System.out.println("here?");
+            NodoPila<T> nodoAuxiliar = this.primero;
+            texto += "[";
+            while (nodoAuxiliar != null) {
+                texto += nodoAuxiliar.getDato().toString() + ",";
+                nodoAuxiliar = nodoAuxiliar.getSiguiente();
+            }
+            texto += "]";
+
+        }
+        return texto + "}";
     }
 
 }

@@ -31,6 +31,11 @@ public class NodoPila<T extends Comparable<T>> extends NodoGenerico {
         return siguiente;
     }
 
+    @Override
+    public String toString() {
+        return "NodoPila{" + "dato=" + dato + ", siguiente=" + siguiente + '}';
+    }
+
     public void setSiguiente(NodoPila<T> siguiente) {
         this.siguiente = siguiente;
     }
