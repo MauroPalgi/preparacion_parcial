@@ -15,14 +15,18 @@ public class Binaria {
             return false;
         }
         int med = (desde + hasta) / 2;
+        
         if (v[med] == dato) {
             encontre = true;
         } else {
+            
             if (v[med] < dato) {
                 encontre = busquedaBinaria(v, dato, med + 1, hasta);
             } else {
                 encontre = busquedaBinaria(v, dato, desde, med - 1);
             }
+            
+            
         }
         return encontre;
     }

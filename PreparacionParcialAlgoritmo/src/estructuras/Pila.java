@@ -22,15 +22,17 @@ public class Pila<T extends Comparable<T>> {
     }
 
     public void apilar(T dato) { // ESTO ES PUSH
-        NodoPila<T> nuevoNodo = new NodoPila<>(dato);
-        nuevoNodo.setSiguiente(this.primero);
-        this.primero = nuevoNodo;
-        this.cantelementos++;
+        if (this.cantelementos + 1 <= this.maximo) {
+            NodoPila<T> nuevoNodo = new NodoPila<>(dato);
+            nuevoNodo.setSiguiente(this.primero);
+            this.primero = nuevoNodo;
+            this.cantelementos++;
+        }
     }
 
     public NodoPila<T> desapilar() { // ESTO ES POP
         NodoPila<T> auxiliar = this.primero;
-        this.primero = auxiliar.getSiguiente();        
+        this.primero = auxiliar.getSiguiente();
         this.cantelementos--;
         return auxiliar;
     }
@@ -54,13 +56,12 @@ public class Pila<T extends Comparable<T>> {
 
     @Override
     public String toString() {
-        String texto = "Pila{" + "maximo=" + maximo + ", cantelementos=" + cantelementos + ",";
+        String texto = "Pila{" + "maximo=" + maximo + ", \ncantelementos=" + cantelementos + (this.cima() != null ? ", \ncima=" + this.cima().toString() : "");
         if (esVacia()) {
             texto += "Pila vacia";
         } else {
-            System.out.println("here?");
             NodoPila<T> nodoAuxiliar = this.primero;
-            texto += "[";
+            texto += "\nNodos=[";
             while (nodoAuxiliar != null) {
                 texto += nodoAuxiliar.getDato().toString() + ",";
                 nodoAuxiliar = nodoAuxiliar.getSiguiente();
@@ -68,7 +69,7 @@ public class Pila<T extends Comparable<T>> {
             texto += "]";
 
         }
-        return texto + "}";
+        return texto + "\n}";
     }
 
 }

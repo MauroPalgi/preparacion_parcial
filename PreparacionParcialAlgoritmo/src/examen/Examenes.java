@@ -14,21 +14,37 @@ public class Examenes {
 
     public static void main(String[] args) {
 
-        int[] vector = new int[]{35, 7, 67, 52, 31, 28};
-        System.out.println(Buscoposminimo(vector, 1, 5));
-        System.out.println(Buscoposminimo(vector, 2, 5));
+        int[] vector = new int[]{1, 2, 7, 5, 3, 4};
         Pila<Integer> pilaInt = new Pila<>(5);
-        System.out.println(pilaInt.toString());
+        //System.out.println(pilaInt.toString());
         pilaInt.apilar(5);
         pilaInt.apilar(3);
+        pilaInt.apilar(2);
         pilaInt.apilar(6);
         pilaInt.apilar(8);
-        pilaInt.desapilar();
-        pilaInt.desapilar();
-        pilaInt.desapilar();
-        pilaInt.desapilar();               
-        System.out.println(pilaInt.toString());
+        // Reemplazar(pilaInt, 69, 5);
 
+        ListaDoble<Integer> listaInt = new ListaDoble<>();
+        listaInt.agregarOrd(-1);
+        listaInt.agregarOrd(1);
+        listaInt.agregarOrd(2);
+        listaInt.agregarOrd(3);
+        listaInt.agregarOrd(4);
+        listaInt.agregarOrd(5);
+        // listaInt.mostrar();
+        // System.out.println(busqueda(listaInt, 3, 2));
+
+        // eliminarMayores(pilaInt, 4);
+        int[][] matrizInt = {{1, 4, 3}, {1, 3, 5}, {6, 9, 1}};
+        // int[][] respuesta = sumaFilas(3, 3, matrizInt);
+//        for (int i = 0; i < respuesta.length; i++) {
+//            for (int j = 0; j < respuesta[i].length; j++) {
+//                System.out.println("celdas - " + respuesta[i][j]);
+//            }
+//        }
+        System.out.println("resultado = " + sumaMultiplos(vector, 0));
+        int[] vector2 = new int[]{1, 1, 4, 3, 95, 5};
+        System.out.println(noValeCopiar(vector2, 0, 5));
     }
 
     /*    
@@ -57,7 +73,6 @@ public class Examenes {
 
             }
         }
-
         return minimoPos;
     }
 
@@ -78,7 +93,149 @@ public class Examenes {
         • esvacia() 
         • esllena()
      */
-    static public void Reemplazar(Pila P, int nuevo, int viejo) {
-        
+    static public void Reemplazar(Pila pila, int nuevo, int viejo) {
+        NodoPila nodoAuxiliar = pila.cima();
+        Pila<Integer> pilaAuxiliar = new Pila<>(pila.elementos());
+        Pila<Integer> pilaRespuesta = new Pila<>(pila.elementos());
+
+        int largoPila = pila.elementos();
+        for (int i = 0; i < largoPila; i++) {
+            int valorNodo = (Integer) nodoAuxiliar.getDato();
+            pila.desapilar();
+            pilaAuxiliar.apilar(valorNodo);
+            nodoAuxiliar = nodoAuxiliar.getSiguiente();
+        }
+        nodoAuxiliar = pilaAuxiliar.cima();
+        for (int i = 0; i < largoPila; i++) {
+            int valorNodo = (Integer) nodoAuxiliar.getDato();
+            pilaAuxiliar.desapilar();
+            if (valorNodo == viejo) {
+                valorNodo = nuevo;
+            }
+            pilaRespuesta.apilar(valorNodo);
+            nodoAuxiliar = nodoAuxiliar.getSiguiente();
+
+        }
+        System.out.println("Nueva Pila: " + pilaRespuesta.toString());
+
     }
+
+    /*
+        EJERCICIO 3 - 01052022
+        Dado una lista simplemente encadenada, implementar un método recursivo que permita 
+        indicar si se encuentra un elemento dado, dentro de una cantidad tope máxima de 
+        elementos indicada desde su inicio.
+        
+        Ej: Si se buscara el número 5 con un tope máximo de 4 en la lista:
+        retornaría verdadero ya que el número 5 se encuentra en el lugar 3, siendo el tope máximo 
+        4. Si se buscara el número 9 retornaría falso, ya que se encuentra en el lugar 5 (lugar 
+        superior al tope). Si se buscara el 8 retornaría falso dado que no está el número.
+        Firma a utilizar: boolean busqueda(Nodo lista, int númeroBuscado, int tope
+     */
+    static public boolean busqueda(ListaDoble lista, int numeroBuscado, int tope) {
+        NodoDoble<Integer> nodoAuxiliar = lista.getInicio();
+        int resultado = posicionNodoLista(nodoAuxiliar, numeroBuscado, tope);
+        return resultado > 0;
+    }
+
+    static public int posicionNodoLista(NodoDoble nodo, int numeroBuscado, int tope) {
+        if ((int) nodo.getDato() == numeroBuscado) {
+            return tope;
+        }
+        if (tope == 0) {
+            return -1;
+        }
+        return posicionNodoLista(nodo.getSiguiente(), numeroBuscado, tope - 1);
+    }
+
+    /*
+    EJERCICIO 4 - 01052022
+    Escribir una función que permita eliminar de una pila todos los elementos mayores a un 
+    valor indicado:
+    Firma a utilizar: boolean eliminarMayores(pila P, int valor)
+     */
+    static public boolean eliminarMayores(Pila pila, int valor) {
+
+        if (!pila.esVacia()) {
+            while ((Integer) pila.cima().getDato() > valor) {
+                pila.desapilar();
+            }
+            NodoPila<Integer> nodoAuxiliar = pila.cima();
+            while (nodoAuxiliar != null) {
+                if (nodoAuxiliar.getSiguiente() != null && nodoAuxiliar.getSiguiente().getDato() > valor) {
+                    nodoAuxiliar.setSiguiente(nodoAuxiliar.getSiguiente().getSiguiente());
+                }
+                nodoAuxiliar = nodoAuxiliar.getSiguiente();
+            }
+        }
+
+        System.out.println(pila.toString());
+
+        return false;
+    }
+
+    /*
+    EJERCICIO 5 - 01052022
+    
+    Implementar un algoritmo que retorne una nueva matriz - de igual cantidad de filas, pero 
+    una columna más que la original - con la sumatoria de cada fila de la matriz original: 
+    Firma a utilizar: int [][] mat sumaFilas (int largFfila, int largoCol, int[][] m)
+     */
+    static public int[][] sumaFilas(int largFfila, int largoCol, int[][] matriz) {
+        int[][] matrizRespuesta = new int[largFfila][largoCol + 1];
+
+        for (int i = 0; i < largFfila; i++) {
+            int suma = 0;
+            for (int j = 0; j < largoCol; j++) {
+                int celdaActual = matriz[i][j];
+                suma += celdaActual;
+                matrizRespuesta[i][j] = celdaActual;
+            }
+            matrizRespuesta[i][matrizRespuesta[i].length - 1] = suma;
+        }
+
+        return matrizRespuesta;
+    }
+
+    /*
+    EJERCIOCIO 2 - 28102022
+    
+    Realizar un algoritmo recursivo que, dado un vector de enteros retorne la suma de todos aquellos valores que 
+    son múltiplos de dos.
+    Firma sugerida:
+    public int sumaMultiplos (int lista[], int pos)
+     */
+    static public int sumaMultiplos(int[] lista, int pos) {
+        if (lista.length == pos) {
+            return 0;
+        }
+        if (lista[pos] % 2 == 0) {
+            return lista[pos] + sumaMultiplos(lista, pos + 1);
+        } else {
+            return sumaMultiplos(lista, pos + 1);
+        }
+    }
+
+    /*
+    EJERCICIO 1 - B - 03122019
+    
+    Implemente un método RECURSIVO que dado un vector v, una posición desde y una posición 
+    hasta retorne la suma de los elementos que no tengan el mismo valor que su posición en el vector. 
+    
+    Firma: public int noValeCopiar(int[] v, int desde, int hasta)
+    Tomando desde = 0, hasta = 5, k = 16 y dado el siguiente vector: 
+    El resultado es 100, ya que los elementos en la posición 1, 3 y 5 valen 1, 3 y 5 
+    respectivamente, mientras que el primer 1, 4 y 95 están en las posiciones 0, 2 y 4.    
+     */
+    static public int noValeCopiar(int[] vector, int desde, int hasta) {
+        if (desde > hasta) {
+            return 0;
+        }
+        if (vector[desde] != desde) {
+            return vector[desde] + noValeCopiar(vector, desde + 1, hasta);
+        } else {
+            return noValeCopiar(vector, desde + 1, hasta);
+        }
+    }
+
 }
