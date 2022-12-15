@@ -4,15 +4,18 @@
  */
 package ordenamiento;
 
+import Utils.*;
+
 /**
  *
  * @author mauro
  */
 public class Burbuja {
 
-    private static void burbujaSort(int[] v) {
+    public static void burbujaSort(int[] v) {
         int ultimo = v.length - 1;
         for (int i = 0; i < v.length; i++) {
+            Utils.mostrarVector(v);
             for (int j = 0; j < ultimo; j++) {
                 if (v[j] > v[j + 1]) {
                     int aux = v[j + 1];

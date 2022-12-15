@@ -11,5 +11,11 @@ package Utils;
 public class Utils {
 
     static public void mostrarVector(int[] vector) {
+        
+        for (int i = 0; i < vector.length; i++) {
+            System.out.print(vector[i] + " - ");
+        }
+        System.out.println("\n");
+        
     }
 }

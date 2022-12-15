@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ordenamiento;
-
+import Utils.*;
 /**
  *
  * @author mauro
@@ -16,15 +16,14 @@ public class Merge {
             int largoVecIzq = med;
             int largoVecDer = largo - med;
             int vecIzq[] = new int[largoVecIzq];
-            int vecDer[] = new int[largoVecDer];
-            // Se cargan ambos vectores mitades
+            int vecDer[] = new int[largoVecDer];            
             for (int i = 0; i < largoVecIzq; i++) {
                 vecIzq[i] = lista[i];
             }
             for (int j = 0; j < largoVecDer; j++) {
                 vecDer[j] = lista[j + med];
             }
-
+            Utils.mostrarVector(lista);
             mergeSort(vecIzq, largoVecIzq);
             mergeSort(vecDer, largoVecDer);
             merge(lista, vecIzq, vecDer);

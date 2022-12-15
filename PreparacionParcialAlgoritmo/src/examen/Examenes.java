@@ -14,16 +14,16 @@ public class Examenes {
 
     public static void main(String[] args) {
 
-        int[] vector = new int[]{1, 2, 7, 5, 3, 4};
-        Pila<Integer> pilaInt = new Pila<>(5);
+        int[] vector = new int[]{1, 5, 34, 4, 70, 80, 8, 100};
+        
+//        Pila<Integer> pilaInt = new Pila<>(5);
         //System.out.println(pilaInt.toString());
-        pilaInt.apilar(5);
-        pilaInt.apilar(3);
-        pilaInt.apilar(2);
-        pilaInt.apilar(6);
-        pilaInt.apilar(8);
+//        pilaInt.apilar(5);
+//        pilaInt.apilar(3);
+//        pilaInt.apilar(2);
+//        pilaInt.apilar(6);
+//        pilaInt.apilar(8);
         // Reemplazar(pilaInt, 69, 5);
-
         ListaDoble<Integer> listaInt = new ListaDoble<>();
         listaInt.agregarOrd(-1);
         listaInt.agregarOrd(1);
@@ -31,20 +31,23 @@ public class Examenes {
         listaInt.agregarOrd(3);
         listaInt.agregarOrd(4);
         listaInt.agregarOrd(5);
+        // System.out.println(suma_vec(vector, vector.length));
+        System.out.println(algoritmo(vector, 2, 5));
+
+//        System.out.println(listaInt.toString());
+//        mostrarMenorEIgual(listaInt.getInicio(), 3);
         // listaInt.mostrar();
         // System.out.println(busqueda(listaInt, 3, 2));
-
-        // eliminarMayores(pilaInt, 4);
-        int[][] matrizInt = {{1, 4, 3}, {1, 3, 5}, {6, 9, 1}};
+        // eliminarMayores(pilaInt, 4);        
         // int[][] respuesta = sumaFilas(3, 3, matrizInt);
 //        for (int i = 0; i < respuesta.length; i++) {
 //            for (int j = 0; j < respuesta[i].length; j++) {
 //                System.out.println("celdas - " + respuesta[i][j]);
 //            }
 //        }
-        System.out.println("resultado = " + sumaMultiplos(vector, 0));
-        int[] vector2 = new int[]{1, 1, 4, 3, 95, 5};
-        System.out.println(noValeCopiar(vector2, 0, 5));
+//        System.out.println("resultado = " + sumaMultiplos(vector, 0));
+//        int[] vector2 = new int[]{1, 1, 4, 3, 95, 5};
+//        System.out.println(noValeCopiar(vector2, 0, 5));
     }
 
     /*    
@@ -238,4 +241,70 @@ public class Examenes {
         }
     }
 
+    /*
+    Realizar un algoritmo recursivo que, dado un entero, muestre todos los números menores e iguales al 
+    mismo. Ej: para la lista dispuesta como ejemplo, si el número dado fuera 76, se debería mostrar: 
+    34-45-70-76-76
+    Firma: void mostrarMenorEIgual(Nodo lista, int num) (5 ptos)
+     */
+    static public void mostrarMenorEIgual(NodoDoble lista, int num) {
+        if (lista == null) {
+            return;
+        }
+
+        if ((Integer) lista.getDato() <= num) {
+            System.out.println(lista.getDato().toString());
+
+        }
+
+        mostrarMenorEIgual(lista.getSiguiente(), num);
+    }
+
+    /*
+    Ejercicio 4 (10 ptos)
+    Implemente un algoritmo recursivo que sume los elementos de un vector 
+    Utilizar ls siguiente firma: int suma_vec(int v [], int n) // n es la cantidad de elementos del vector
+     */
+    static public int suma_vec(int v[], int n) {
+        if (n == 0) {
+            return 0;
+        }
+
+        int pos = v.length - n;
+        return v[pos] + suma_vec(v, n - 1);
+    }
+
+    /*
+    Ejercicio 4 (15 ptos)
+    
+    Dado el siguiente vector:
+    
+    a) Implementar un algoritmo recursivo que, dado una posición desde y una posición hasta, retorne la suma 
+    de los números que se encuentran entre estas dos posiciones (inclusive) (10 puntos)
+    Vector v =1 5 34 4 70 80 8 100
+
+    Firma: private int algoritmo(int[] v, int desde, int hasta) 
+    Ej; con desde: 2 y hasta:5, el retorno debería ser: 113
+     */
+    static public int algoritmo(int[] v, int desde, int hasta) {        
+        if (desde < hasta) {
+            return 0;
+        }
+        return v[desde] + algoritmo(v, desde + 1, hasta);
+    }
+
+    /*
+    Ejercicio 4 (15 ptos)
+    
+    Dado el siguiente vector ordenado en forma ascendente, 
+    
+    a) Implementar un algoritmo recursivo de búsqueda por bipartición utilizando la técnica divide y vencerás. 
+    (10 puntos)
+    Vector v=
+    1 5 34 45 70 80 85 100
+    Pre condición: el vector está ordenado, inicialmente parte con desde=0, hasta=v.length-1.
+    Firma: private static boolean algoritmo(int[] v, int desde, int hasta, int num) 
+    
+    b) Realizar el diagrama de llamadas para Llamada inicial: algoritmo(v,0,7,70) (5 puntos)
+    */
 }

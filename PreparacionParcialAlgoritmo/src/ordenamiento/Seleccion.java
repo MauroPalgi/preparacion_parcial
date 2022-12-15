@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ordenamiento;
-
+import Utils.*;
 /**
  *
  * @author mauro
@@ -22,8 +22,9 @@ public class Seleccion {
         return pos;
     }
 
-    private static void SelectionSort(int[] v, int desde, int hasta) {
+    public static void SelectionSort(int[] v, int desde, int hasta) {
         for (int i = desde; i < hasta; i++) {
+            Utils.mostrarVector(v);
             int posMin = posMinimoDelVector(v, i, hasta);
             int aux = v[i];
             v[i] = v[posMin];
@@ -64,38 +65,36 @@ public class Seleccion {
             }
         }
     }
-    
-    
-     public static void selectionSort_ordenado (int v[])    {
-    // Algoritmo de Sort por Seleccion que determina si el vector ya está ordenado y  termina
+
+    public static void selectionSort_ordenado(int v[]) {
+        // Algoritmo de Sort por Seleccion que determina si el vector ya está ordenado y  termina
         int largo = v.length;
         boolean ordenado = false;
 
-        for (int i = 0; i<largo && !ordenado;i++){
+        for (int i = 0; i < largo && !ordenado; i++) {
             int min = v[i];
             int pos_min = i;
             ordenado = true;
-            for (int j=i;j<largo;j++){
-                if (j+1<largo) {
-                    if (v[j]<v[j+1]){
+            for (int j = i; j < largo; j++) {
+                if (j + 1 < largo) {
+                    if (v[j] < v[j + 1]) {
                         ordenado = true && ordenado;
-                    }
-                    else {
+                    } else {
                         ordenado = false && ordenado;
-                    }                  
+                    }
                 }
                 if (v[j] < min) {
                     min = v[j];
                     pos_min = j;
                 }
             }
-            if (!ordenado){
+            if (!ordenado) {
                 int aux = v[i];
                 v[i] = min;
-                v[pos_min]=aux;
+                v[pos_min] = aux;
             } else {
                 System.out.println("El vector ya estaba ordenado");
-            }        
+            }
         }
     }
 
