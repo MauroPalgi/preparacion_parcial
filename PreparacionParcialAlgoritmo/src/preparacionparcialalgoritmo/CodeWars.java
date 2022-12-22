@@ -22,10 +22,18 @@ public class CodeWars {
         // TODO May the force be with you
         int res = 0;
         for (int i = 0; i < arrayOfSheeps.length; i++) {
-            if (arrayOfSheeps[i] ==  true) {
+            if (arrayOfSheeps[i] == true) {
                 res++;
             }
         }
         return res;
+    }
+
+    public static class Door {
+
+        public static String run(String events) {
+
+            return null;
+        }
     }
 }
