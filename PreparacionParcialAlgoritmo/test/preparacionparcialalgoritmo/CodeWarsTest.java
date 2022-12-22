@@ -79,6 +79,6 @@ public class CodeWarsTest {
     }
 
     private void test(String description, String events, String result) {
-        assertEquals(description, result,  Door.run(events));
+        assertEquals(description, result, Door.run(events));
     }
 }
