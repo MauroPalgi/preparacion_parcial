@@ -7,7 +7,7 @@ package preparacionparcialalgoritmo;
 //import estructuras.*;
 //import pruebas.Test;
 //import ordenamiento.*;
-import org.junit.runner.*;
+// import org.junit.runner.*;
 
 
 /**

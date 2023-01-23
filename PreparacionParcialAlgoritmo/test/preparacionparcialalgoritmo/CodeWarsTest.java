@@ -81,4 +81,12 @@ public class CodeWarsTest {
     private void test(String description, String events, String result) {
         assertEquals(description, result, Door.run(events));
     }
+
+    @Test
+    public void PeopleThatPlayBanjo() {
+        assertEquals("Nope!", "Martin does not play banjo", CodeWars.areYouPlayingBanjo("Martin"));
+        assertEquals("Nope!", "Rikke plays banjo", CodeWars.areYouPlayingBanjo("Rikke"));
+        assertEquals("Nope! Remember lower case counts, too!", "rolf plays banjo", CodeWars.areYouPlayingBanjo("rolf"));
+        assertEquals("Nope!", "bravo does not play banjo", CodeWars.areYouPlayingBanjo("bravo"));
+    }
 }

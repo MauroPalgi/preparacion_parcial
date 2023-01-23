@@ -96,40 +96,8 @@ public class CodeWars {
             return new String(response);
         }
     }
+
+    public static String areYouPlayingBanjo(String name) {
+        return name + (name.charAt(0) == 'R' || name.charAt(0) == 'r' ? " plays banjo" : " does not play banjo");
+    }
 }
-/*
-    if (event == 'O' || lastEvent == 'O') {
-                    lastEvent = 'O';
-                    if (doorState > 0) {
-                        doorState--;
-                    } else {
-                        if (doorState == 0) {
-                            lastEvent = 'S';
-                        }
-                    }
-                }
-
-                if (event == 'P') {
-                    if (lastEvent == 'P') {
-                        lastEvent = 'S';
-                        response[i] = Character.forDigit(doorState, 10);
-                    } else {
-                        doorState++;
-                        if (doorState < 5) {
-                            response[i] = Character.forDigit(doorState, 10);
-
-                        } else {
-                            if (doorState == 5) {
-                                response[i] = Character.forDigit(doorState, 10);
-                                doorState = 0;
-                            }
-
-                        }
-                    }
-                }
-                if (event == '.' || lastEvent == 'S') {
-              
-                    response[i] = Character.forDigit(doorState, 10);
-                    lastEvent = 'S';
-                }
- */
