@@ -8,7 +8,7 @@ package preparacionparcialalgoritmo;
 //import pruebas.Test;
 //import ordenamiento.*;
 // import org.junit.runner.*;
-
+import ordenamiento.*;
 
 /**
  *
@@ -19,7 +19,10 @@ public class PreparacionParcialAlgoritmo {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {        
+    public static void main(String[] args) {
+        var vector = new int[]{12, 8, 9, 4, 36, 100};
+        Burbuja burbuja = new Burbuja();
+        burbuja.Ordenamiento(vector);
     }
 
 }

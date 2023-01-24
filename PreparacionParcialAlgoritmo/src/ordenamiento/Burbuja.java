@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package ordenamiento;
 
@@ -8,22 +9,26 @@ import Utils.*;
 
 /**
  *
- * @author mauro
+ * @author maurp
+ * @param <T>
  */
 public class Burbuja {
 
-    public static void burbujaSort(int[] v) {
-        int ultimo = v.length - 1;
-        for (int i = 0; i < v.length; i++) {
-            Utils.mostrarVector(v);
-            for (int j = 0; j < ultimo; j++) {
-                if (v[j] > v[j + 1]) {
-                    int aux = v[j + 1];
-                    v[j + 1] = v[j];
-                    v[j] = aux;
-                }
+    public void Ordenamiento(int[] vector) {
+        int largo = vector.length;
+        for (int i = 0; i < largo; i++) {
+            boolean ordenado = false;
+            for (int j = i + 1; j < largo; j++) {
+                if (vector[i] > vector[j] && !ordenado) {
+                    System.out.println("Entre");
+                    int aux = vector[i];
+                    vector[i] = vector[j];
+                    vector[j] = aux;
+                } 
             }
-            ultimo = ultimo - 1;
+            Utils.mostrarVector(vector);
         }
+
     }
+
 }
