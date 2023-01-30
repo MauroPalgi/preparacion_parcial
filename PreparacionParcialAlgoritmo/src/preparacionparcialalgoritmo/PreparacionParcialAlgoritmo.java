@@ -20,9 +20,13 @@ public class PreparacionParcialAlgoritmo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        var vector = new int[]{12, 8, 9, 4, 36, 100};
-        Burbuja burbuja = new Burbuja();
-        burbuja.Ordenamiento(vector);
+        var vector = new int[]{5, 6, 3, 1, 8, 7, 2, 4};
+//        Burbuja burbuja = new Burbuja();
+//        burbuja.Ordenamiento(vector);
+//        Insercion insercion = new Insercion();
+//        insercion.Ordenamiento(vector);
+        Seleccion selecion = new Seleccion();
+        selecion.Ordenamiento(vector);
     }
 
 }
